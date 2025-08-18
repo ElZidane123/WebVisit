@@ -1,0 +1,121 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* src/App.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-bg {
+    background: linear-gradient(135deg, #af1e1e 0%, #f63b3b 100%);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* src/App.css */
+/* ... kode CSS yang sudah ada ... */
+
+/* Styling untuk tanggal yang semua sesinya sudah di-booking */
+.calendar-day.date-fully-booked {
+  background-color: #f3f4f6; /* Warna abu-abu */
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+  color: #9ca3af;
+}
+
+/* Styling untuk tanggal yang diblokir (hari selain Rabu atau hari event) */
+.calendar-day.date-blocked {
+  background-color: #fee2e2; /* Warna merah muda */
+  border-color: #f87171;
+  cursor: not-allowed;
+  color: #ef4444;
+  opacity: 0.6;
+}
+
+/* Styling untuk tanggal yang tersedia */
+.calendar-day.date-available {
+  background-color: #ecfdf5; /* Warna hijau muda */
+  border-color: #10b981;
+  cursor: pointer;
+  color: #065f46;
+}
+
+/* Styling untuk tanggal yang dipilih */
+.calendar-day.date-selected {
+  background-color: #dbeafe; /* Warna biru muda */
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+
+.date-available {
+    background: #f0fdf4;
+    border: 2px solid #22c55e;
+}
+
+.date-blocked {
+    background: #fef2f2;
+    border: 2px solid #ef4444;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.date-selected {
+    background: #dbeafe;
+    border: 2px solid #3b82f6;
+}
+
+.calendar-day {
+    min-height: 80px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calendar-day:hover:not(.date-blocked) {
+    transform: scale(1.02);
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
