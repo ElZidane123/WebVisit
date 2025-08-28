@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/header';
 import Footer from './components/footer';
+import Steps from './components/Steps';
 import './App.css';
 
 // Data acara sekolah yang memblokir kunjungan (tanggal yang tidak bisa dipilih sama sekali)
@@ -187,12 +188,20 @@ const App = () => {
         });
     };
 
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        setUploadedFile(file);
+    };
+
+    const [uploadedFile, setUploadedFile] = useState(null);
+
+
     return (
         <div className="bg-gray-50">
             <Header />
             
             {/* ... bagian Hero Section ... */}
-            <section className="hero-bg text-white py-16">
+            <section className="hero-bg text-white py-36">
                 <div className="max-w-10xl mx-auto px-6 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-4xl font-bold mb-4">Selamat Datang Di SMK Telkom Malang</h2>
                     <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
@@ -200,28 +209,30 @@ const App = () => {
                         (study tour, kunjungan industri, museum, kampus, dll) maupun kunjungan tamu ke sekolah.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-20 justify-center">
-                        <div className="bg-white bg-opacity-10 rounded-lg p-4 text-center">
+                        <div className="bg-white bg-opacity-20 rounded-lg p-4 text-center">
                             <div className="text-2xl font-bold">1000+</div>
                             <div className="text-sm text-blue-100">Siswa Aktif</div>
                         </div>
-                        <div className="bg-white bg-opacity-10 rounded-lg p-4 text-center">
+                        <div className="bg-white bg-opacity-20 rounded-lg p-4 text-center">
                             <div className="text-2xl font-bold">60+</div>
                             <div className="text-sm text-blue-100">Guru</div>
                         </div>
-                        <div className="bg-white bg-opacity-10 rounded-lg p-4 text-center">
+                        <div className="bg-white bg-opacity-20 rounded-lg p-4 text-center">
                             <div className="text-2xl font-bold">32 Th</div>
                             <div className="text-sm text-blue-100">Berdiri Selama</div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <Steps />
             
             <main className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {/* ... Bagian Kalender ... */}
                     <div className="bg-white rounded-xl shadow-lg p-6">
                         <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-2xl font-bold text-gray-900">Pilih Jadwal Visit</h3>
+                            <h3 className="text-2xl font-bold text-gray-900">Pilih Jadwal Kunjungan</h3>
                             <div className="flex space-x-2">
                                 <button onClick={() => handleMonthChange(-1)} className="p-2 hover:bg-gray-100 rounded-lg">
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"/></svg>
@@ -265,13 +276,13 @@ const App = () => {
                     
                     {/* Registration Form */}
                     <div className="bg-white rounded-xl shadow-lg p-6">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6">Visit Registration</h3>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-6">Registrasi Kunjungan</h3>
                         
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className={`${selectedDate ? '' : 'hidden'} bg-blue-50 border border-blue-200 rounded-lg p-4`}>
                                 <div className="flex items-center space-x-2">
                                     <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/></svg>
-                                    <span className="text-blue-800 font-medium">Selected Date: 
+                                    <span className="text-blue-800 font-medium">Memilih Tanggal Kunjungan: 
                                         <span id="selectedDateText">{selectedDate?.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
                                     </span>
                                 </div>
@@ -306,18 +317,16 @@ const App = () => {
                             </div>
                             
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Visitors</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Jenis Kunjungan</label>
                                 <select 
                                     name="visitors" 
                                     value={visitDetails.visitors} 
                                     onChange={handleFormChange} 
                                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 >
-                                    <option>1 person</option>
-                                    <option>2 people</option>
-                                    <option>3 people</option>
-                                    <option>4 people</option>
-                                    <option>5+ people</option>
+                                    <option>Per Orangan</option>
+                                    <option>Kelompok (5 Sampai 10)</option>
+                                    <option>Rombongan (Diatas 10)</option>
                                 </select>
                             </div>
                             
@@ -358,7 +367,22 @@ const App = () => {
                                 </div>
                             )}
 
-                            <div><label className="block text-sm font-medium text-gray-700 mb-2">Spesial request dan pertanyaan</label><textarea rows="3" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Any specific areas you'd like to see or questions you have..."></textarea></div>
+                            <div><label className="block text-sm font-medium text-gray-700 mb-2">Spesial request dan pertanyaan</label><textarea rows="3" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tuliskan Request anda"></textarea></div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Upload Dokumen Pendukung</label>
+                                <input 
+                                    type="file"
+                                    onChange={handleFileUpload}
+                                    className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                                />
+                                {uploadedFile && (
+                                    <p className="mt-2 text-sm text-green-600 flex items-center">
+                                        <svg className="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+                                        File berhasil diunggah: <span className="font-medium ml-1">{uploadedFile.name}</span>
+                                    </p>
+                                )}
+                            </div>
                             
                             <button
                                 type="submit"
@@ -421,7 +445,7 @@ const App = () => {
                                 <span>{confirmationData.session}</span>
                                 <span className="font-semibold">Instansi:</span>
                                 <span>{confirmationData.institution}</span>
-                                <span className="font-semibold">Jumlah Pengunjung:</span>
+                                <span className="font-semibold">Jenis Pengunjung:</span>
                                 <span>{confirmationData.visitors}</span>
                                 {confirmationData.institution === 'SMA' && (
                                     <>

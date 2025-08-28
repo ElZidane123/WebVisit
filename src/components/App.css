@@ -1,0 +1,66 @@
+/* src/App.css */
+
+/* Vertical line center timeline */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  bottom: 2.5rem;
+  left: 50%;
+  width: 3px;
+  background-color: #af1e1edd; /* Tailwind blue-600 */
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+/* Step marker dot */
+.step-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #af1e1edd;
+  border-radius: 9999px;
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+/* Alternate side content fade-in */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.fade-in-left.animate-on-scroll {
+  animation: fadeInLeft 0.6s ease forwards;
+}
+.fade-in-right.animate-on-scroll {
+  animation: fadeInRight 0.6s ease forwards;
+}
+.fade-in-left,
+.fade-in-right {
+  opacity: 0; /* Pastikan elemen tersembunyi sebelum animasi */
+}
+
+/* Mengatur ulang body Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'inter', sans-serif;
+}

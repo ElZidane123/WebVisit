@@ -21,7 +21,98 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+/* src/App.css */
+
 .hero-bg {
+  background-image: url('./components/telkom.jpg'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  position: relative; 
+  overflow: hidden; 
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #af1e1edd 0%, #f63b3bb5 100%); /* Black overlay with 50% opacity */
+  z-index: 1; /* Place the overlay above the image but below content */
+}
+
+.hero-bg > div {
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
+}
+
+/* hero bg 2 */
+
+.hero-bgA {
+  background-image: url('./components/telkom.jpg'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  position: relative; 
+  overflow: hidden; 
+}
+
+.hero-bgA::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #af1e1ef4 0%, #f63b3bf4 100%); /* Black overlay with 50% opacity */
+  z-index: 1; /* Place the overlay above the image but below content */
+}
+
+.hero-bgA > div {
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
+}
+
+.step-card {
+    transition: all 0.3s ease;
+    border-left: 0px solid #af1e1e;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Other existing styles */
+.date-blocked {
+  background-color: #fde8e8; /* Red-100 */
+  border-color: #ef4444; /* Red-500 */
+  color: #b91c1c; /* Red-700 */
+  cursor: not-allowed;
+}
+
+.date-fully-booked {
+  background-color: #e0e7ff; /* Blue-100 (or similar, adjusted for distinction) */
+  border-color: #6366f1; /* Indigo-500 (or similar) */
+  color: #4f46e5; /* Indigo-700 */
+  cursor: not-allowed;
+  opacity: 0.6; /* Make it slightly faded to indicate full */
+}
+
+.date-available {
+  background-color: #d1fae5; /* Green-100 */
+  border-color: #10b981; /* Green-500 */
+  color: #065f46; /* Green-700 */
+  cursor: pointer;
+}
+
+.date-selected {
+  background-color: #bfdbfe; /* Blue-100 */
+  border-color: #3b82f6; /* Blue-500 */
+  color: #1e40af; /* Blue-700 */
+}
+
+.hero-bg1 {
     background: linear-gradient(135deg, #af1e1e 0%, #f63b3b 100%);
 }
 
